@@ -1,6 +1,6 @@
-﻿using EX4_CRM.Enums;
+﻿using Domain.Enums;
 
-namespace EX4_CRM.Entities;
+namespace Domain.Entities;
 
 public class Lead
 {

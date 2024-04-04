@@ -1,4 +1,4 @@
-﻿namespace EX4_CRM.Entities;
+﻿namespace Domain.Entities;
 
 public class Sale
 {

@@ -1,7 +1,7 @@
-﻿using EX4_CRM.Entities;
+﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace EX4_CRM.Data;
+namespace Infrastructure.Data;
 
 public class AppDbContext(
     DbContextOptions<AppDbContext> opts) : DbContext(opts)

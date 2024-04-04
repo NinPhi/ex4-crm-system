@@ -1,4 +1,4 @@
-﻿namespace EX4_CRM.Enums;
+﻿namespace Domain.Enums;
 
 public enum LeadStatus
 {

@@ -1,7 +1,7 @@
-﻿using EX4_CRM.Enums;
+﻿using Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace EX4_CRM.Entities;
+namespace Domain.Entities;
 
 public class Contact
 {
