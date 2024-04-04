@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240404122237_DataSeed_AddSuperAdmin")]
-    partial class DataSeed_AddSuperAdmin
+    [Migration("20240404134558_Seed_AddDefaultAdmin")]
+    partial class Seed_AddDefaultAdmin
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -156,9 +156,8 @@ namespace Infrastructure.Data.Migrations
                         new
                         {
                             Id = 1L,
-                            Email = "su@example.com",
-                            FullName = "Super Admin",
-                            PasswordHash = "$2a$12$cyddlq4JXaEROGif0epD4OuQVeGcv01S3fUSlN0xiUMA0qG0AZQ2m",
+                            Email = "admin@example.com",
+                            PasswordHash = "$2a$12$f71iOEnNm.M6DiBO2mvWFueeCEyz8FRj6RYD0BSUMkBk58mDNFnTK",
                             Role = 0
                         });
                 });

@@ -153,9 +153,8 @@ namespace Infrastructure.Data.Migrations
                         new
                         {
                             Id = 1L,
-                            Email = "su@example.com",
-                            FullName = "Super Admin",
-                            PasswordHash = "$2a$12$cyddlq4JXaEROGif0epD4OuQVeGcv01S3fUSlN0xiUMA0qG0AZQ2m",
+                            Email = "admin@example.com",
+                            PasswordHash = "$2a$12$f71iOEnNm.M6DiBO2mvWFueeCEyz8FRj6RYD0BSUMkBk58mDNFnTK",
                             Role = 0
                         });
                 });

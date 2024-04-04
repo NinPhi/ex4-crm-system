@@ -1,5 +1,4 @@
-﻿using Infrastructure.Data.Seed;
-using Microsoft.EntityFrameworkCore.Infrastructure;
+﻿using Infrastructure.Extensions;
 
 namespace Infrastructure.Data;
 
@@ -13,8 +12,7 @@ public class AppDbContext(
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        var dataSeeder = Database.GetService<DataSeeder>();
-        dataSeeder.Seed(modelBuilder);
+        modelBuilder.InitialSeed();
 
         modelBuilder
             .Entity<Lead>()

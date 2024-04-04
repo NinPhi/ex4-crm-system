@@ -5,7 +5,7 @@
 namespace Infrastructure.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class DataSeed_AddSuperAdmin : Migration
+    public partial class Seed_AddDefaultAdmin : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -13,7 +13,7 @@ namespace Infrastructure.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "BlockedOn", "Email", "FullName", "PasswordHash", "Role" },
-                values: new object[] { 1L, null, "su@example.com", "Super Admin", "$2a$12$cyddlq4JXaEROGif0epD4OuQVeGcv01S3fUSlN0xiUMA0qG0AZQ2m", 0 });
+                values: new object[] { 1L, null, "admin@example.com", null, "$2a$12$f71iOEnNm.M6DiBO2mvWFueeCEyz8FRj6RYD0BSUMkBk58mDNFnTK", 0 });
         }
 
         /// <inheritdoc />
