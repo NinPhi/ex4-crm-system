@@ -11,7 +11,7 @@ internal sealed class SignInHandler(
         var user = await userRepository.GetByEmailAsync(request.Email);
         if (user is null) return null;
 
-        bool passwordIsValid = passwordManager.Validate(request.Password, user.PasswordHash);
+        bool passwordIsValid = passwordManager.VerifyPassword(request.Password, user.PasswordHash);
         if (passwordIsValid is false) return null;
 
         bool userIsBlocked = user.BlockedOn.HasValue;

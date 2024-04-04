@@ -1,9 +1,14 @@
 ﻿using Application.Services;
-using static BCrypt.Net.BCrypt;
 
 namespace Infrastructure.Services;
 
 internal class PasswordManager : IPasswordManager
 {
-    public bool Validate(string password, string hash) => Verify(password, hash);
+    private const int WORK_FACTOR = 12;
+
+    public bool VerifyPassword(string password, string hash) =>
+        BCrypt.Net.BCrypt.Verify(password, hash);
+
+    public string HashPassword(string password) =>
+        BCrypt.Net.BCrypt.HashPassword(password, WORK_FACTOR);
 }

@@ -1,4 +1,5 @@
 ﻿using Application.Services;
+using Infrastructure.Data.Seed;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
 using Microsoft.Extensions.Configuration;
@@ -14,6 +15,7 @@ public static class DependencyInjection
         services.AddAppDbContext(configuration);
         services.AddRepositories();
         services.AddServices();
+        services.AddDataSeeder(configuration);
 
         return services;
     }
@@ -37,6 +39,19 @@ public static class DependencyInjection
     private static IServiceCollection AddServices(this IServiceCollection services)
     {
         services.AddTransient<IPasswordManager, PasswordManager>();
+
+        return services;
+    }
+
+    private static IServiceCollection AddDataSeeder(
+        this IServiceCollection services,
+        IConfiguration configuration)
+    {
+        services.AddOptions<DataSeedOptions>()
+            .Bind(configuration.GetSection(nameof(DataSeedOptions)))
+            .ValidateDataAnnotations();
+
+        services.AddTransient<DataSeeder>();
 
         return services;
     }

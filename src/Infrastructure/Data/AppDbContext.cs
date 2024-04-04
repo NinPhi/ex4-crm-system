@@ -1,4 +1,5 @@
-﻿
+﻿using Infrastructure.Data.Seed;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace Infrastructure.Data;
 
@@ -12,6 +13,9 @@ public class AppDbContext(
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        var dataSeeder = Database.GetService<DataSeeder>();
+        dataSeeder.Seed(modelBuilder);
+
         modelBuilder
             .Entity<Lead>()
             .HasOne(s => s.Salesman)
