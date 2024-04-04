@@ -10,9 +10,9 @@ namespace WebApi.Controllers;
 public class AuthController(ISender sender) : ControllerBase
 {
     [HttpPost("login")]
-    public async Task<IActionResult> Login(LoginData data)
+    public async Task<IActionResult> Login(Application.Contracts.Auth.SignInRequest data)
     {
-        var request = data.Adapt<SignInRequest>();
+        var request = data.Adapt<Application.Features.Auth.SignIn.SignInCommand>();
 
         var response = await sender.Send(request);
 

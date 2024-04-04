@@ -1,13 +1,13 @@
-﻿namespace WebApi.Contracts;
+﻿namespace Application.Contracts.Auth;
 
-public record LoginData
+public record SignInRequest
 {
     [Required]
     [EmailAddress]
     [StringLength(200)]
     public string? Email { get; init; }
 
-    [StringLength(200)]
     [Required]
+    [StringLength(200)]
     public string? Password { get; init; }
 }

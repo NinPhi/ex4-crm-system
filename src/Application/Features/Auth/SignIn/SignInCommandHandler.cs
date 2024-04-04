@@ -1,12 +1,14 @@
-﻿namespace Application.Features.Auth.SignIn;
+﻿using Application.Contracts.Auth;
 
-internal sealed class SignInHandler(
+namespace Application.Features.Auth.SignIn;
+
+internal sealed class SignInCommandHandler(
     IUserRepository userRepository,
     IPasswordManager passwordManager) :
-    IRequestHandler<SignInRequest, SignInResponse?>
+    IRequestHandler<SignInCommand, SignInResponse?>
 {
     public async Task<SignInResponse?> Handle(
-        SignInRequest request, CancellationToken cancellationToken)
+        SignInCommand request, CancellationToken cancellationToken)
     {
         var user = await userRepository.GetByEmailAsync(request.Email);
         if (user is null) return null;
