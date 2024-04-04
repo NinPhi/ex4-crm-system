@@ -1,4 +1,6 @@
-﻿namespace EX4_CRM.Entities;
+﻿using EX4_CRM.Enums;
+
+namespace EX4_CRM.Entities;
 
 public class Lead
 {
@@ -8,7 +10,7 @@ public class Lead
 
     public required long SalesmanId { get; set; }
 
-    public required string LeadStatus { get; set; }
+    public required LeadStatus Status { get; set; }
 
     public Contact? Contact { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using EX4_CRM.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace EX4_CRM.Entities;
 
@@ -23,7 +24,7 @@ public class Contact
     [StringLength(200)]
     public string? Email { get; set; }
 
-    public required string ContactStatus { get; set; }
+    public required ContactStatus Status { get; set; }
 
     public User? Marketer { get; set; }
 }

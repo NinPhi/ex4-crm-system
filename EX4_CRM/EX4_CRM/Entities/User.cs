@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using EX4_CRM.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace EX4_CRM.Entities;
 
@@ -15,7 +16,7 @@ public class User
     [StringLength(200)]
     public required string PasswordHash { get; set; }
 
-    public required string Role { get; set; }
+    public required Role Role { get; set; }
 
     public DateTime? BlockedOn { get; set; }
 }
