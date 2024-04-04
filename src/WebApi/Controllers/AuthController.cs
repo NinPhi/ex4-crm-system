@@ -1,9 +1,11 @@
 ﻿using Application.Features.Auth.SignIn;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApi.Controllers;
 
 [ApiController]
 [Route("api/auth")]
+[AllowAnonymous]
 public class AuthController(ISender sender) : ControllerBase
 {
     [HttpPost("login")]
@@ -14,8 +16,7 @@ public class AuthController(ISender sender) : ControllerBase
         var response = await sender.Send(request);
 
         if (response is null)
-            return Unauthorized("User credentials are invalid " +
-                "or the user is blocked by administration.");
+            return Unauthorized("User credentials are invalid or the user is blocked.");
 
         await HttpContext.SignInAsync(
             response.Id.ToString(),

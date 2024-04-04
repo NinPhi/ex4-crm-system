@@ -4,7 +4,7 @@ using Infrastructure.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Infrastructure.Configuration;
+namespace Infrastructure.Extensions;
 
 public static class DependencyInjection
 {
@@ -12,6 +12,8 @@ public static class DependencyInjection
         this IServiceCollection services, IConfiguration configuration)
     {
         services.AddAppDbContext(configuration);
+        services.AddRepositories();
+        services.AddServices();
 
         return services;
     }
