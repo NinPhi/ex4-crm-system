@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace WebApi.Contracts;
+﻿namespace WebApi.Contracts;
 
 public record LoginData
 {

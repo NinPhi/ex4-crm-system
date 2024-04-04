@@ -1,9 +1,4 @@
-﻿using Application.Services;
-using Domain.Repositories;
-using Mapster;
-using MediatR;
-
-namespace Application.Features.Auth.SignIn;
+﻿namespace Application.Features.Auth.SignIn;
 
 internal sealed class SignInHandler(
     IUserRepository userRepository,
@@ -14,10 +9,10 @@ internal sealed class SignInHandler(
         SignInRequest request, CancellationToken cancellationToken)
     {
         var user = await userRepository.GetByEmailAsync(request.Email);
-        if (user == null) return null;
+        if (user is null) return null;
 
-        bool passwordValid = passwordManager.Validate(request.Password);
-        if (passwordValid is false) return null;
+        bool passwordIsValid = passwordManager.Validate(request.Password, user.PasswordHash);
+        if (passwordIsValid is false) return null;
 
         bool userIsBlocked = user.BlockedOn.HasValue;
         if (userIsBlocked) return null;

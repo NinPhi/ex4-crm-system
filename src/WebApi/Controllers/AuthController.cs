@@ -1,10 +1,4 @@
 ﻿using Application.Features.Auth.SignIn;
-using Mapster;
-using MediatR;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Mvc;
-using WebApi.Contracts;
-using WebApi.Extensions;
 
 namespace WebApi.Controllers;
 
@@ -21,7 +15,7 @@ public class AuthController(ISender sender) : ControllerBase
 
         if (response is null)
             return Unauthorized("User credentials are invalid " +
-                "or the user was blocked by administrators.");
+                "or the user is blocked by administration.");
 
         await HttpContext.SignInAsync(
             response.Id.ToString(),

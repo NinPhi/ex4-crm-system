@@ -2,5 +2,5 @@
 
 public interface IPasswordManager
 {
-    bool Validate(string password);
+    bool Validate(string password, string hash);
 }

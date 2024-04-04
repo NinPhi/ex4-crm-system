@@ -1,9 +1,4 @@
-﻿using Domain.Entities;
-using Domain.Repositories;
-using Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
-
-namespace Infrastructure.Repositories;
+﻿namespace Infrastructure.Repositories;
 
 internal class UserRepository(AppDbContext dbContext) : IUserRepository
 {

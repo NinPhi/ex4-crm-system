@@ -1,7 +1,6 @@
-﻿using Domain.Repositories;
-using Infrastructure.Data;
+﻿using Application.Services;
 using Infrastructure.Repositories;
-using Microsoft.EntityFrameworkCore;
+using Infrastructure.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -29,6 +28,13 @@ public static class DependencyInjection
     private static IServiceCollection AddRepositories(this IServiceCollection services)
     {
         services.AddTransient<IUserRepository, UserRepository>();
+
+        return services;
+    }
+
+    private static IServiceCollection AddServices(this IServiceCollection services)
+    {
+        services.AddTransient<IPasswordManager, PasswordManager>();
 
         return services;
     }
