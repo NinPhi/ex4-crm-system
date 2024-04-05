@@ -1,8 +1,9 @@
-﻿global using Microsoft.AspNetCore.Mvc;
+﻿global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Mvc;
 
 global using Mapster;
 global using MediatR;
 
-global using Application.Contracts;
+global using Domain.Enums;
 
 global using WebApi.Extensions;

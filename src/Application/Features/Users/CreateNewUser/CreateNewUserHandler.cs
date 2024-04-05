@@ -1,6 +1,4 @@
 ﻿using Application.Contracts.Users;
-using Domain.Entities;
-using Domain.Repositories.UnitOfWork;
 
 namespace Application.Features.Users.CreateNewUser;
 

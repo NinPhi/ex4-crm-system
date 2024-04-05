@@ -1,8 +1,7 @@
 ﻿using Application.Contracts.Users;
 using Application.Features.Users.CreateNewUser;
+using Application.Features.Users.EditUserBlock;
 using Application.Features.Users.GetAllUsers;
-using Domain.Enums;
-using Microsoft.AspNetCore.Authorization;
 
 namespace WebApi.Controllers;
 
@@ -32,5 +31,31 @@ public class UsersController(ISender sender) : ControllerBase
             return BadRequest($"Email {request.Email} is already taken.");
 
         return Ok(response);
+    }
+
+    [HttpPatch("{id}/block")]
+    public async Task<IActionResult> Block(long id)
+    {
+        var command = new EditUserBlockCommand(id, IsBlocked: true);
+
+        var response = await sender.Send(command);
+
+        if (response is false)
+            return BadRequest($"User with ID {id} was not found.");
+
+        return NoContent();
+    }
+
+    [HttpPatch("{id}/unblock")]
+    public async Task<IActionResult> Unblock(long id)
+    {
+        var command = new EditUserBlockCommand(id, IsBlocked: false);
+
+        var response = await sender.Send(command);
+
+        if (response is false)
+            return BadRequest($"User with ID {id} was not found.");
+
+        return NoContent();
     }
 }

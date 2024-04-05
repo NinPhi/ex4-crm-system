@@ -13,4 +13,26 @@ internal class UserRepository(AppDbContext dbContext) : IUserRepository
         dbContext.Users.AnyAsync(u => u.Email == email);
 
     public void AddNew(User user) => dbContext.Users.Add(user);
+
+    public async Task<bool> BlockAsync(long id)
+    {
+        var user = await dbContext.Users.FindAsync(id);
+
+        if (user is null) return false;
+
+        user.BlockedOn = DateTime.UtcNow;
+
+        return true;
+    }
+
+    public async Task<bool> UnblockAsync(long id)
+    {
+        var user = await dbContext.Users.FindAsync(id);
+
+        if (user is null) return false;
+
+        user.BlockedOn = null;
+
+        return true;
+    }
 }

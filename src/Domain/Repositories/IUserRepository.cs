@@ -8,4 +8,6 @@ public interface IUserRepository
     Task<List<User>> GetAllAsync();
     Task<bool> EmailExistsAsync(string email);
     void AddNew(User user);
+    Task<bool> BlockAsync(long id);
+    Task<bool> UnblockAsync(long id);
 }
