@@ -2,6 +2,7 @@
 using Application.Features.Users.CreateNewUser;
 using Application.Features.Users.EditUserBlock;
 using Application.Features.Users.GetAllUsers;
+using Application.Features.Users.SetUserRole;
 
 namespace WebApi.Controllers;
 
@@ -55,6 +56,24 @@ public class UsersController(ISender sender) : ControllerBase
 
         if (response is false)
             return BadRequest($"User with ID {id} was not found.");
+
+        return NoContent();
+    }
+
+    [HttpPatch("{id}/role")]
+    public async Task<IActionResult> SetRole(long id, SetUserRoleRequest request)
+    {
+        var currentUserId = HttpContext.GetCurrentUserId();
+
+        var command = new SetUserRoleCommand(
+            CurrentUserId: currentUserId,
+            TargetUserId: id,
+            Role: request.Role);
+
+        var response = await sender.Send(command);
+
+        if (response is false)
+            return BadRequest($"Failed to set role {request.Role} to user with ID {id}.");
 
         return NoContent();
     }

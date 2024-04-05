@@ -24,4 +24,16 @@ public static class AuthExtensions
 
         await httpContext.SignInAsync(claimsPrincipal);
     }
+
+    public static long GetCurrentUserId(this HttpContext httpContext)
+    {
+        var nameIdentifier = httpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        bool success = long.TryParse(nameIdentifier, out long userId);
+
+        if (success is false)
+            throw new Exception("Could not parse user id from the name identifier claim.");
+
+        return userId;
+    }
 }

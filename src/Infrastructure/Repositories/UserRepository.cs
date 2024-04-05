@@ -1,4 +1,6 @@
 ﻿
+using Domain.Enums;
+
 namespace Infrastructure.Repositories;
 
 internal class UserRepository(AppDbContext dbContext) : IUserRepository
@@ -32,6 +34,17 @@ internal class UserRepository(AppDbContext dbContext) : IUserRepository
         if (user is null) return false;
 
         user.BlockedOn = null;
+
+        return true;
+    }
+
+    public async Task<bool> SetRoleAsync(long id, Role role)
+    {
+        var user = await dbContext.Users.FindAsync(id);
+
+        if (user is null) return false;
+
+        user.Role = role;
 
         return true;
     }
