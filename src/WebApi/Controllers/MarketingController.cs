@@ -1,4 +1,6 @@
-﻿using Application.Features.Contacts;
+﻿using Application.Contracts.Contacts;
+using Application.Features.Contacts.CreateNewContact;
+using Application.Features.Contacts.GetAllContacts;
 
 namespace WebApi.Controllers;
 
@@ -13,6 +15,22 @@ public class MarketingController(ISender sender) : ControllerBase
         var query = new GetAllContactsQuery();
 
         var response = await sender.Send(query);
+
+        return Ok(response);
+    }
+
+    [Authorize(Roles = nameof(Role.Marketing))]
+    [HttpPost("contacts")]
+    public async Task<IActionResult> CreateNewContact(
+        CreateNewContactRequest request)
+    {
+        var currentUserId = HttpContext.GetCurrentUserId();
+
+        var command = new CreateNewContactCommand(
+            MarketerId: currentUserId,
+            Data: request);
+
+        var response = await sender.Send(command);
 
         return Ok(response);
     }

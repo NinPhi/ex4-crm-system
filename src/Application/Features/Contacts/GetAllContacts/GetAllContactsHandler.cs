@@ -1,6 +1,6 @@
 ﻿using Application.Contracts.Contacts;
 
-namespace Application.Features.Contacts;
+namespace Application.Features.Contacts.GetAllContacts;
 
 internal sealed class GetAllContactsHandler(IContactRepository contactRepository)
     : IRequestHandler<GetAllContactsQuery, List<ContactResponse>>
