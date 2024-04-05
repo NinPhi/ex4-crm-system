@@ -1,7 +1,6 @@
 ﻿using Application.Contracts.Auth;
 using Application.Features.Auth.SignIn;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 
 namespace WebApi.Controllers;
 

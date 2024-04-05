@@ -33,6 +33,7 @@ public static class DependencyInjection
     private static IServiceCollection AddRepositories(this IServiceCollection services)
     {
         services.AddTransient<IUserRepository, UserRepository>();
+        services.AddTransient<IContactRepository, ContactRepository>();
 
         return services;
     }

@@ -1,7 +1,6 @@
 ﻿using Infrastructure.Extensions;
 using Application.Extensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
 
 namespace WebApi.Extensions;
 
