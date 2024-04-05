@@ -8,4 +8,9 @@ internal class UserRepository(AppDbContext dbContext) : IUserRepository
 
     public Task<List<User>> GetAllAsync() =>
         dbContext.Users.AsNoTracking().ToListAsync();
+
+    public Task<bool> EmailExistsAsync(string email) =>
+        dbContext.Users.AnyAsync(u => u.Email == email);
+
+    public void AddNew(User user) => dbContext.Users.Add(user);
 }

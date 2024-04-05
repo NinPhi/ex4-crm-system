@@ -2,7 +2,7 @@
 
 namespace Application.Features.Auth.SignIn;
 
-internal sealed class SignInCommandHandler(
+internal sealed class SignInHandler(
     IUserRepository userRepository,
     IPasswordManager passwordManager) :
     IRequestHandler<SignInCommand, SignInResponse?>

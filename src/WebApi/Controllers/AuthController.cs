@@ -1,4 +1,5 @@
-﻿using Application.Features.Auth.SignIn;
+﻿using Application.Contracts.Auth;
+using Application.Features.Auth.SignIn;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 
@@ -10,11 +11,11 @@ namespace WebApi.Controllers;
 public class AuthController(ISender sender) : ControllerBase
 {
     [HttpPost("login")]
-    public async Task<IActionResult> Login(Application.Contracts.Auth.SignInRequest data)
+    public async Task<IActionResult> Login(SignInRequest request)
     {
-        var request = data.Adapt<Application.Features.Auth.SignIn.SignInCommand>();
+        var command = request.Adapt<SignInCommand>();
 
-        var response = await sender.Send(request);
+        var response = await sender.Send(command);
 
         if (response is null)
             return Unauthorized("User credentials are invalid or the user is blocked.");

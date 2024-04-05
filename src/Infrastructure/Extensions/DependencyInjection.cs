@@ -1,5 +1,7 @@
 ﻿using Application.Services;
+using Domain.Repositories.UnitOfWork;
 using Infrastructure.Repositories;
+using Infrastructure.Repositories.UnitOfWork;
 using Infrastructure.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +15,7 @@ public static class DependencyInjection
     {
         services.AddAppDbContext(configuration);
         services.AddRepositories();
+        services.AddUnitOfWork();
         services.AddServices();
 
         return services;
@@ -30,6 +33,13 @@ public static class DependencyInjection
     private static IServiceCollection AddRepositories(this IServiceCollection services)
     {
         services.AddTransient<IUserRepository, UserRepository>();
+
+        return services;
+    }
+
+    private static IServiceCollection AddUnitOfWork(this IServiceCollection services)
+    {
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         return services;
     }
